@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 
 namespace :app do
   task import_employee_earnings: :environment do

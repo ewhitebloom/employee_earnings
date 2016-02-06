@@ -23,11 +23,14 @@ ActiveRecord::Schema.define(version: 20160203163458) do
     t.string  "name"
     t.integer "department_id"
     t.integer "title_id"
-    t.integer "total_earnings"
+    t.float   "total_earnings"
     t.integer "zip_code_id"
   end
 
+  add_index "employee_earnings", ["department_id"], name: "index_employee_earnings_on_department_id"
   add_index "employee_earnings", ["name"], name: "index_employee_earnings_on_name"
+  add_index "employee_earnings", ["title_id"], name: "index_employee_earnings_on_title_id"
+  add_index "employee_earnings", ["zip_code_id"], name: "index_employee_earnings_on_zip_code_id"
 
   create_table "titles", force: :cascade do |t|
     t.string "name"
