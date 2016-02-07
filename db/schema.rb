@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203163458) do
+ActiveRecord::Schema.define(version: 20160207174959) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
   end
 
   add_index "departments", ["name"], name: "index_departments_on_name"
+
+  create_table "earnings_reports", force: :cascade do |t|
+    t.integer "title_id"
+    t.float   "average_total_earnings"
+  end
+
+  add_index "earnings_reports", ["title_id"], name: "index_earnings_reports_on_title_id"
 
   create_table "employee_earnings", force: :cascade do |t|
     t.string  "name"
