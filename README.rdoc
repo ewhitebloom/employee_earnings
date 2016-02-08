@@ -1,28 +1,8 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+This creates at API for average total salary for all employees in the Boston Employee Earnings Report (https://data.cityofboston.gov/Finance/Employee-Earnings-Report-2014/4swk-wcg8). This does so using a typical SQL database, and caches average salaries by job title, in a separate table, using a cron job that runs every 5 minutes, in the event of the file/table growing.
 
-* Ruby version
+I created a separate table for title, department, and zip code. This provides clarity and organization by reducing duplication of titles, zip codes and departments in the EmployeeEarnings table, and provides greater efficiency for the analytics (when it would scale). It allows for easy lookup of a given title, department or zip code by way of indexing those values and then doing SQL joins with the employee_earnings table.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+The caching of the analytics values like total salary in another table, is actually 8 times faster than just doing an average salary by title directly on the employee_earnings table. The tradeoff is that this would not be as real-time and is only up-to-date every five minutes. 
